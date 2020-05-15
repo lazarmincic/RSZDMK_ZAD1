@@ -105,14 +105,13 @@ char ocitaj_taster()
   return taster;
 }
 
- char unos [4]={0,0,0,0}; //unos
+ char unos [4]={6,6,6,6}; //unos
 
 int main()
 {
   	
  
   	lcd.begin(16, 2);
-	bool start = 0;
   	unsigned char redosled [4]; //komb. sa pocetka
   	lcd.createChar (0,pik);
     lcd.createChar (1,tref);
@@ -129,12 +128,9 @@ int main()
       lcd.print("Pritisni *");
       while(ocitaj_taster()!='*')
         seed++;
-      randomSeed(seed);
+      randomSeed(seed); 
       taster = ocitaj_taster();
        
-      start = 1;
-      if (start)
-      {
         lcd.clear();
         for (int i=0;i<4;i++)
         {
@@ -183,11 +179,11 @@ int main()
               lcd.setCursor(kursor,0);
               break;
             case '5':
-              
+              kraj = 1;
               for (int i=0;i<4;i++)
-                  if (unos[i]== 0)
+                  if (unos[i]== 6)
                     kraj = 0;
-                kraj = 1;
+                
               if (kraj)
               {
                   lcd.noBlink();
@@ -218,7 +214,7 @@ int main()
           }
           while(ocitaj_taster()==taster);
         }
-      }
+      
       
     }
   
